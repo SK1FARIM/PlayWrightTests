@@ -11,17 +11,27 @@ import java.nio.file.Paths;
 import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class App {
     private Playwright playwright;
     private Browser browser;
-    private Page page;
+//    private Page page;
+    private final Page page;
+    private final Locator SearchField;
+//    private final Locator SearchTxtField;
+
+    public App(Page page, Locator searchTermInput) {
+        this.page = page;
+        this.SearchField = page.locator("//*/span[contains(text(),'Search')]");
+//        this.SearchTxtField - page.locator("//*/span[contains(text(),'Search')]")
+    }
 
     @BeforeClass
     public void setUp() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-        page = browser.newPage();
+//        page = browser.newPage();
     }
 
     @Test
@@ -39,6 +49,13 @@ public class App {
         assertThat(page.getByRole(AriaRole.HEADING,
                 new Page.GetByRoleOptions().setName("Installation"))).isVisible();
 
+        SearchField.click();
+//        Locator txtField = page.locator("#docsearch-input").fill("playwright");
+        Locator txtField = page.getByRole(AriaRole.TEXTBOX);
+        txtField.check();
+
+//        page.locator("input[name=\"search\"]").press("Enter");
+//        assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
     }
 
     @Test

@@ -1,1 +1,6 @@
+org\example\testcases\PlayTest.class
+org\example\pages\PlaywrightFactory.class
+org\example\pages\HomePage.class
 org\example\App.class
+org\example\pages\SearchPage.class
+org\example\pages\BaseTest.class
