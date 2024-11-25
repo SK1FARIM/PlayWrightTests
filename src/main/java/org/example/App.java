@@ -16,15 +16,20 @@ import static org.testng.Assert.assertEquals;
 public class App {
     private Playwright playwright;
     private Browser browser;
-//    private Page page;
     private final Page page;
     private final Locator SearchField;
-//    private final Locator SearchTxtField;
+    private final Locator searchTxtField;
+    private final Locator usernameInput;
+    private final Locator loginButton;
+    private final Locator errorMessage;
 
-    public App(Page page, Locator searchTermInput) {
+    public App(Page page) {
         this.page = page;
         this.SearchField = page.locator("//*/span[contains(text(),'Search')]");
-//        this.SearchTxtField - page.locator("//*/span[contains(text(),'Search')]")
+        this.searchTxtField = page.locator("//*/span[contains(text(),'Search')]");
+        this.usernameInput = page.locator("input[name='username']");
+        this.loginButton = page.locator("button[type='submit']");
+        this.errorMessage = page.locator(".error-message");
     }
 
     @BeforeClass
