@@ -27,7 +27,7 @@ public class App {
         this.page = page;
         this.SearchField = page.locator("//*/span[contains(text(),'Search')]");
         this.searchTxtField = page.locator("//*/span[contains(text(),'Search')]");
-        this.usernameInput = page.locator("input[name='username']");
+        this.usernameInput = page.locator("input[name='usernam']");
         this.loginButton = page.locator("button[type='submit']");
         this.errorMessage = page.locator(".error-message");
     }
